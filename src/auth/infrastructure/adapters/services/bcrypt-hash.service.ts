@@ -1,14 +1,14 @@
 import { IHashService } from "../../ports/hash-service.interface";
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 export class BcryptHashService implements IHashService {
   async hash(text: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      bcrypt.hash(text, 10, (err, hash) => {
+      bcrypt.hash(text, 10, function (err, hash) {
         if (err) {
           reject(err);
         } else {
-          resolve(hash);
+          resolve(hash as string);
         }
       });
     });
@@ -20,7 +20,7 @@ export class BcryptHashService implements IHashService {
         if (err) {
           reject(err);
         } else {
-          resolve(result);
+          resolve(result as boolean);
         }
       });
     });
