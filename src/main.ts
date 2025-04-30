@@ -20,9 +20,16 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
-    //disable cors
-    app.enableCors();
+ 
+  SwaggerModule.setup('api', app, document, {
+    customCssUrl: '/api/swagger-ui.css',
+    customJs: [
+      '/api/swagger-ui-bundle.js',
+      '/api/swagger-ui-standalone-preset.js',
+    ],
+  });
+  //disable cors
+  app.enableCors();
 
   await app.listen(process.env.PORT ?? 3000);
 }
