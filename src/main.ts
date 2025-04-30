@@ -10,9 +10,9 @@ async function bootstrap() {
     process.cwd(),
     process.env.GENERATED_FILES_DIR ?? '',
   );
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
-  }
+  // if (!fs.existsSync(dirPath)) {
+  //   fs.mkdirSync(dirPath, { recursive: true });
+  // }
   const config = new DocumentBuilder()
     .setTitle('Auth API')
     .setDescription('The authentication API description')
