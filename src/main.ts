@@ -21,13 +21,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
  
-  SwaggerModule.setup('api', app, document, {
-    customCssUrl: '/api/swagger-ui.css',
-    customJs: [
-      '/api/swagger-ui-bundle.js',
-      '/api/swagger-ui-standalone-preset.js',
-    ],
-  });
+  SwaggerModule.setup('', app, document);
   //disable cors
   app.enableCors();
 
