@@ -1,4 +1,4 @@
 export const AUTH_METHODS = {
-    PASSWORD: 'password',
-    GOOGLE: 'google',
+    PASSWORD: 'PASSWORD',
+    GOOGLE: 'GOOGLE',
 }

@@ -48,12 +48,7 @@ export class ControllerAuth {
   @ApiBearerAuth()
   @Get('profile')
   @ApiResponse({ status: 200, description: 'User profile retrieved successfully', type: ProfileDto })
-  @ApiResponse({ status: 401, description: 'Unauthorized' })
-  @ApiHeader({
-    name: 'auth-method',
-    description: 'The authentication method used',
-    required: true
-  })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })  
   async profile(@Req() request: Request): Promise<ProfileDto> {
     const payload = request['user'] as AuthPayload;    
     let profile = await this.profileUseCase.execute(payload.id);
