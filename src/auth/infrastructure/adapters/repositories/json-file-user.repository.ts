@@ -26,6 +26,8 @@ export class JsonFileUserRepository implements IUserRepository {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
+    console.log('Writing users to file:', this.filePath);
+    console.log('Users:', users);
     fs.writeFileSync(this.filePath, JSON.stringify(users, null, 2));
   }
 

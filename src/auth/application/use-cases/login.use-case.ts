@@ -20,7 +20,8 @@ export class LoginUseCase {
       authToken = await authMethodService.login(authMethodInput.data);
     }
     catch (error) {
-      if (error instanceof SocialUserNotRegisteredException) {
+      console.log('Login error:', error);
+      if (error instanceof SocialUserNotRegisteredException) {        
         this.registerUserUseCase.execute({
           email: error.user.email,
           name: error.user.name,
