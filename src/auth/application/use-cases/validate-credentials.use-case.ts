@@ -1,7 +1,7 @@
 import { Inject, UnauthorizedException } from "@nestjs/common";
 import { ModuleRef } from "@nestjs/core";
 import { SERVICE_NAMES } from "src/auth/constants/service-names";
-import { AuthPayload } from "src/auth/domain/entities/auth-payload";
+import { AuthPayload } from "src/auth/domain/objects/auth-payload";
 import { IUserRepository } from "src/auth/domain/repositories/user-repository.interface";
 import { IAuthMethodService } from "../ports/auth-method-service.interface";
 import { AuthToken } from "src/auth/domain/objects/auth-token";

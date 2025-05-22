@@ -4,11 +4,13 @@ import { RegisterUserInput } from 'src/auth/application/dtos/register-user.input
 import { IAuthMethodService } from 'src/auth/application/ports/auth-method-service.interface';
 import { AUTH_METHODS } from 'src/auth/constants/auth-methods';
 import { SERVICE_NAMES } from 'src/auth/constants/service-names';
-import { AuthMethod } from 'src/auth/domain/entities/auth-method';
-import { AuthPayload } from 'src/auth/domain/entities/auth-payload';
+import { AuthMethod } from 'src/auth/domain/objects/auth-method';
+import { AuthPayload } from 'src/auth/domain/objects/auth-payload';
 import { AuthToken } from 'src/auth/domain/objects/auth-token';
 import { IUserRepository } from 'src/auth/domain/repositories/user-repository.interface';
 import { ITokenService } from '../../ports/token-service.interface';
+import { User } from 'src/auth/domain/entities/user';
+import { SocialUserNotRegisteredException } from 'src/auth/application/exceptions/social-user-not-registered.exception';
 
 @Injectable()
 export class GoogleAuthMethodService implements IAuthMethodService {
@@ -18,7 +20,7 @@ export class GoogleAuthMethodService implements IAuthMethodService {
   ) { }
 
   private readonly client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-  readonly googleIdentifier: string = "googleID";
+  readonly googleIdentifier: string = AUTH_METHODS.GOOGLE;
 
   async validateUser(authToken: string): Promise<AuthPayload> {
     const payload = await this.tokenService.validateToken(authToken);
@@ -60,7 +62,20 @@ export class GoogleAuthMethodService implements IAuthMethodService {
     const expirationDate = new Date(payload!.exp * 1000);
     if (!payload) throw new Error('Invalid Google token');
     const user = await this.userRepository.findByAuthMethodData(AUTH_METHODS.GOOGLE, this.googleIdentifier, payload.sub);
-    if (!user) throw new Error('User not found');
+    if (!user){
+      let newUser:User = {
+        id: 0,
+        email: payload.email!,
+        name: payload.given_name!,
+        surname: payload.family_name!,
+        profilePicture: payload.picture,    
+        authMethods: [{
+          type: AUTH_METHODS.GOOGLE,
+          data:  loginData,         
+        }],
+      }
+      throw new SocialUserNotRegisteredException(newUser)
+    }
     const outPayload: AuthPayload = {
       id: user.id,
       email: user.email,

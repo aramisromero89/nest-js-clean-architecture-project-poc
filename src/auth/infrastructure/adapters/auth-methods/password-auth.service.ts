@@ -3,8 +3,8 @@ import { RegisterUserInput } from 'src/auth/application/dtos/register-user.input
 import { IAuthMethodService } from 'src/auth/application/ports/auth-method-service.interface';
 import { AUTH_METHODS } from 'src/auth/constants/auth-methods';
 import { SERVICE_NAMES } from 'src/auth/constants/service-names';
-import { AuthMethod } from 'src/auth/domain/entities/auth-method';
-import { AuthPayload } from 'src/auth/domain/entities/auth-payload';
+import { AuthMethod } from 'src/auth/domain/objects/auth-method';
+import { AuthPayload } from 'src/auth/domain/objects/auth-payload';
 import { IUserRepository } from 'src/auth/domain/repositories/user-repository.interface';
 import { IHashService } from 'src/auth/infrastructure/ports/hash-service.interface';
 import { ITokenService } from '../../ports/token-service.interface';

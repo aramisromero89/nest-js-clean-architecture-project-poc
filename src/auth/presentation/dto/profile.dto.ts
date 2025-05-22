@@ -10,6 +10,9 @@ export class ProfileDto {
     @ApiProperty({ description: 'First name of the user' })
     name: string;
 
+    @ApiProperty({ description: 'The profile picture url' })
+    profilePicture?: string;
+
     @ApiProperty({ description: 'Surname of the user' })
     surname: string;
 }

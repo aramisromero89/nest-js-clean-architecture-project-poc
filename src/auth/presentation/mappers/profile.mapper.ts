@@ -6,6 +6,7 @@ export function mapProfileToDto(profile: ProfileOutput): ProfileDto {
     id: profile.id,
     email: profile.email,
     name: profile.name,
-    surname: profile.surname
+    surname: profile.surname,
+    profilePicture: profile.profilePicture,
   };
 }

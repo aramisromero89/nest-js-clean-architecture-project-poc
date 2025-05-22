@@ -1,4 +1,4 @@
-import { AuthMethod } from "src/auth/domain/entities/auth-method";
+import { AuthMethod } from "src/auth/domain/objects/auth-method";
 import { AuthMethodDto } from "../dto/auth-method.dto";
 
 export function mapAuthMethodToDto(authMethod: AuthMethod): AuthMethodDto {

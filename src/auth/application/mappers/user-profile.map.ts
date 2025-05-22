@@ -7,5 +7,6 @@ export function mapUserToProfileOutput(user: User): ProfileOutput {
         email: user.email,
         name: user.name,
         surname: user.surname,
+        profilePicture: user.profilePicture,
     };
 }

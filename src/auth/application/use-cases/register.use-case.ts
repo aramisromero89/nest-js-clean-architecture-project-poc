@@ -3,7 +3,7 @@ import { User } from '../../domain/entities/user';
 import { BadRequestException, ConflictException, Inject } from '@nestjs/common';
 import { IUserRepository } from '../../domain/repositories/user-repository.interface';
 import { RegisterUserInput } from '../dtos/register-user.input';
-import { AuthMethod } from 'src/auth/domain/entities/auth-method';
+import { AuthMethod } from 'src/auth/domain/objects/auth-method';
 import { ModuleRef } from '@nestjs/core';
 import { IAuthMethodService } from '../ports/auth-method-service.interface';
 import { SERVICE_NAMES } from 'src/auth/constants/service-names';
@@ -26,6 +26,7 @@ export class RegisterUseCase {
       email: input.email,
       name: input.name,
       surname: input.surname,
+      profilePicture: input.profilePicture,
       authMethods: [authMethod],
     }
     let res = await this.userRepository.save(user);

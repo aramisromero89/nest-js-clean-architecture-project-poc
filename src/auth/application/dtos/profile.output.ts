@@ -3,4 +3,5 @@ export class ProfileOutput {
     email: string;
     name: string;
     surname: string;
+    profilePicture?: string;
 }

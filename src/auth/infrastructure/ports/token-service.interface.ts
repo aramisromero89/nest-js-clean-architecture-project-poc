@@ -1,4 +1,4 @@
-import { AuthPayload } from "../../domain/entities/auth-payload";
+import { AuthPayload } from "../../domain/objects/auth-payload";
 
 export interface ITokenService {
   generateToken(payload: any):Promise<string>;

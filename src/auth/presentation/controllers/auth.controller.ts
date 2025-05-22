@@ -7,7 +7,7 @@ import { RegisterUserDto } from '../dto/register-user.dto';
 import { AuthGuard } from '../guards/auth.guard';
 import { Request } from 'express';
 import { ApiBearerAuth, ApiHeader, ApiResponse } from '@nestjs/swagger';
-import { AuthPayload } from '../../domain/entities/auth-payload';
+import { AuthPayload } from '../../domain/objects/auth-payload';
 import { AuthGuard as PassportAuthGuard } from '@nestjs/passport';
 import { AuthMethodDto } from '../dto/auth-method.dto';
 import { mapRegisterUserDtoToRegisterUserInput } from '../mappers/register-user.mapper';
