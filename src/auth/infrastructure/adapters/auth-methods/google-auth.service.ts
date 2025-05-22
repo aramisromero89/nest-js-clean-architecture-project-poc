@@ -60,20 +60,24 @@ export class GoogleAuthMethodService implements IAuthMethodService {
     const payload = ticket.getPayload();
     //conver Unix time paylod exp to date
     const expirationDate = new Date(payload!.exp * 1000);
-    if (!payload) throw new Error('Invalid Google token');
+    if (!payload) {
+      console.log('Invalid Google token');
+      throw new Error('Invalid Google token');
+    }
     const user = await this.userRepository.findByAuthMethodData(AUTH_METHODS.GOOGLE, this.googleIdentifier, payload.sub);
-    if (!user){
-      let newUser:User = {
+    if (!user) {
+      let newUser: User = {
         id: 0,
         email: payload.email!,
         name: payload.given_name!,
         surname: payload.family_name!,
-        profilePicture: payload.picture,    
+        profilePicture: payload.picture,
         authMethods: [{
           type: AUTH_METHODS.GOOGLE,
-          data:  loginData,         
+          data: loginData,
         }],
       }
+      console.log('User not found, registering new user', newUser);
       throw new SocialUserNotRegisteredException(newUser)
     }
     const outPayload: AuthPayload = {
