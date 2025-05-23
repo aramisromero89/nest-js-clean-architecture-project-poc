@@ -8,7 +8,7 @@ import { RegisterUseCase } from './register.use-case';
 
 @Injectable()
 export class LoginUseCase {
-  constructor(    
+  constructor(
     private readonly moduleRef: ModuleRef,
     private readonly registerUserUseCase: RegisterUseCase,
   ) { }
@@ -21,7 +21,7 @@ export class LoginUseCase {
     }
     catch (error) {
       console.log('Login error:', error);
-      if (error instanceof SocialUserNotRegisteredException) {        
+      if (error instanceof SocialUserNotRegisteredException) {
         await this.registerUserUseCase.execute({
           email: error.user.email,
           name: error.user.name,
@@ -30,10 +30,10 @@ export class LoginUseCase {
           surname: error.user.surname,
         })
         authToken = await authMethodService.login(authMethodInput.data);
+      } else {
+        throw new UnauthorizedException('Invalid credentials');
       }
-      throw new UnauthorizedException('Invalid credentials');
     }
-
     return authToken;
   }
 } 
