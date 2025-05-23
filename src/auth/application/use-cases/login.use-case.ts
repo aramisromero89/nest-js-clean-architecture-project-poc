@@ -22,7 +22,7 @@ export class LoginUseCase {
     catch (error) {
       console.log('Login error:', error);
       if (error instanceof SocialUserNotRegisteredException) {        
-        this.registerUserUseCase.execute({
+        await this.registerUserUseCase.execute({
           email: error.user.email,
           name: error.user.name,
           profilePicture: error.user.profilePicture,
