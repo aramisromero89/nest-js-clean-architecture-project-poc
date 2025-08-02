@@ -4,5 +4,5 @@
 
 ## Description
 
-Backend for [nest-js-clean-architecture-project-poc](https://github.com/aramisromero89/clean-architecture-angular)
+Backend for [nest-js-clean-architecture-project-poc](https://github.com/aramisromero89/clean-architecture-angular).
 Deployed [here](https://nest-js-clean-architecture-project-poc-981805354605.us-central1.run.app/api)
